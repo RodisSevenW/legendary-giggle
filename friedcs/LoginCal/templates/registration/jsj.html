@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算器</title>
+    <style>
+        /* 设置顶部标题栏样式 */
+        #top {
+            width: 450px;
+            height: 50px;
+            margin: auto;
+            background-color: #8cafe9;
+            border-radius: 10px 10px 0px 0px;
+        }
+
+        /* 设置标题样式 */
+        #calc-title {
+            font-size: 22px;
+            color: white;
+            float: left;
+            margin: 10px 10px 0px 200px;
+        }
+
+        /* 设置结果显示样式 */
+        #result {
+            width: 445px;
+            height: 60px;
+            margin: auto;
+            font-size: 40px;
+            background-color: white;
+            border: solid 3px #b38ddd;
+        }
+
+        /* 设置按钮样式 */
+        #button {
+            width: 450px;
+            height: 422px;
+            background-color: #d999d6;
+            margin: auto;
+        }
+
+        #button div {
+            width: 108px;
+            height: 80px;
+            float: left;
+            background-color: #a0dbe7;
+            margin: 2px;
+            line-height: 80px;
+            text-align: center;
+            font-size: 26px;
+        }
+
+        #button div:hover {
+            background-color: rgb(167, 223, 227);
+        }
+    </style>
+    <script type="text/javascript">
+        // 传递输入的数字
+        function clickNumber(number) {
+            var result = document.getElementById("result");
+            result.innerHTML = result.innerHTML + number;
+        }
+        //传递输入运算符
+        function clickOperator(operator) {  
+    var result = document.getElementById("result");  
+    var string = result.innerHTML;  
+    var len = string.length;  
+    var last = string.charAt(len - 1);  
+  
+    if (last == "+" || last == "-" || last == "*" || last == "/" || last == "%") {  
+        var temp = string.substr(0, len - 1) + operator;  
+        result.innerHTML = temp;  
+    } else {  
+        result.innerHTML += operator;  
+    }  
+}
+
+        // 输入小数点
+        function clickPonit() {
+            var result = document.getElementById("result");
+            var string = result.innerHTML;
+            var len = string.length;
+            var last = string.charAt(len - 1);
+            if (last !== ".") {
+                result.innerHTML = result.innerHTML + ".";
+            } else {
+                result.innerHTML = result.innerHTML;
+            }
+        }
+        // 清空输入
+        function clearresult() {
+            var result = document.getElementById("result");
+            result.innerHTML = "";
+        }
+        // 删除操作
+        function del() {
+            var result = document.getElementById("result");
+            var string = result.innerHTML;
+            if (string.length > 0) {
+                result.innerHTML = string.slice(0, -1);
+            }
+        }
+        // 计算结果eval参数
+        function doCalc() {
+            var result = document.getElementById("result");
+            var expression = result.innerHTML;
+            result.innerHTML = eval(expression);
+        }
+    </script>
+</head>
+
+<body>
+    <div id="top">
+        <div id="calc-title">计算器</div>
+    </div>
+    <div id="result">
+    </div>
+    <div id="button">
+        <div onclick="clearresult()">AC</div>
+        <div onclick="clickOperator('/')">÷</div>
+        <div onclick="clickOperator('*')">x</div>
+        <div onclick="del()">删除</div>
+        <div onclick="clickNumber(7)">7</div>
+        <div onclick="clickNumber(8)">8</div>
+        <div onclick="clickNumber(9)">9</div>
+        <div onclick="clickOperator('%')">%</div>
+        <div onclick="clickNumber(4)">4</div>
+        <div onclick="clickNumber(5)">5</div>
+        <div onclick="clickNumber(6)">6</div>
+        <div onclick="clickOperator('-')">-</div>
+        <div onclick="clickNumber(1)">1</div>
+        <div onclick="clickNumber(2)">2</div>
+        <div onclick="clickNumber(3)">3</div>
+        <div onclick="clickOperator('+')">+</div>
+        <div></div>
+        <div onclick="clickNumber(0)">0</div>
+        <div onclick="clickPonit()">.</div>
+        <div onclick="doCalc()">=</div>
+		<a href="{% url 'logout' %}">退出登录</a>
+        <a href="http://127.0.0.1:8000/sc/secondary_page/" target="_blank">贪吃蛇小游戏</a>
+
+	<footer style="text-align: center;">
+		<p>
+		  <a href="https://beian.miit.gov.cn/" target="_blank">闽ICP备2023002863号-1</a>
+		  <img src="https://p3-pc-weboff.byteimg.com/tos-cn-i-9r5gewecjs/emblem.png" alt="图片描述" style="width: 17px; height: 17px;">
+		  <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=35058302350881" target="_blank">闽公网安备 35058302350881号</a>
+		</div><p align="center">calculator &copy; FriedChickenSystem</p>
+		</p>
+	  </footer>
+</body>
+</html>

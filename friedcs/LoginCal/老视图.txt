@@ -1,0 +1,130 @@
+from django.shortcuts import render
+
+# Create your views here.
+
+from .models import CustomUser
+from .forms import UserRegistrationForm, UserLoginForm
+from django.contrib import messages
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
+from django.contrib import auth
+
+
+def register_view(request):
+    if request.method == 'POST':
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            # 从表单中获取数据
+            username = form.cleaned_data['username']
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password']
+
+            # 创建用户
+            user = CustomUser.objects.create_user(username=username, email=email, password=password)
+
+            # 登录用户（可选）
+            # 如果要在注册后立即登录用户，使用以下代码
+            # login(request, user)
+
+            return redirect('login')  # 重定向到登录页面或其他页面
+    else:
+        form = UserRegistrationForm()
+    return render(request, 'registration/register.html', {'form': form})
+
+import logging
+logger = logging.getLogger('1')
+
+def login_view(request):
+    if request.method == 'POST':
+        form = UserLoginForm(request.POST)
+        print(form.is_valid())
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+
+            #print(username)
+            #print(password)
+            user = authenticate(request,username=username, password=password)
+            #print('user is :',user)
+            if user is not None:
+                login(request, user)
+                return redirect('home')  # 重定向到 'jsj' 页面
+            else:
+                messages.error(request, ' ')  # 添加密码错误的错误消息
+    else:
+        form = UserLoginForm()
+    return render(request, 'registration/login.html', {'form': form})
+
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def jsj_views(request):
+    #return render(request, 'jsj')
+    if request.method == 'POST':
+        form = UserLoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+
+            # 使用 Django 的 authenticate 函数验证用户凭据
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                # 用户凭据验证成功，登录用户
+                login(request, user)
+
+
+                # 重定向到 'jsj' 页面或其他页面
+                return redirect('jsj')
+            else:
+                messages.error(request, '用户名或密码不正确')  # 添加密码错误的错误消息
+                return redirect('/login/')
+        else:
+            messages.error(request, '表单验证失败，请检查您的输入')  # 表单验证失败的错误消息
+            print(form.errors)
+            return redirect('/login/')
+    else:
+        form = UserLoginForm()
+    return render(request, 'registration/jsj.html', {'form': form})
+
+@login_required
+def home_view(request):
+    if request.method == 'POST':
+        form = UserLoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+
+            # 使用 Django 的 authenticate 函数验证用户凭据
+            user = authenticate(request, username=username, password=password)
+
+            if user is not None:
+                # 用户凭据验证成功，登录用户
+                if form.cleaned_data['remember_me']:
+                    request.session.set_expiry(86400 * 7)  # 一周的秒数
+                login(request, user)
+
+                # 重定向到 'jsj' 页面或其他页面
+                return redirect('home')
+            else:
+                messages.error(request, '用户名或密码不正确')  # 添加密码错误的错误消息
+                return redirect('/login/')
+        else:
+            messages.error(request, '表单验证失败，请检查您的输入')  # 表单验证失败的错误消息
+            print(form.errors)
+            return redirect('/login/')
+    else:
+        form = UserLoginForm()
+    return render(request, 'registration/home.html', {'form': form})
+
+from django.contrib.auth import logout
+from django.shortcuts import redirect
+
+def logout_view(request):
+    logout(request)
+    return redirect('login')  # 重定向到登录页面或其他页面
+
+from django.shortcuts import render
+
+@login_required
+def user_list(request):
+    return render(request, 'registration/sc/secondary_page.html')

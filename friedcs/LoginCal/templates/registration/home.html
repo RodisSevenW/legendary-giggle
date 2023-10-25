@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FriedCSystem</title>
+    <link  href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        *{
+            font-family: "微软雅黑 Light";
+        }
+        .fakeimg {
+            height: 200px;
+        }
+        .jumbotron{
+            background-color: #c1e2b3 ;
+        }
+        .container{
+            width: 97%;
+        }
+        /* 添加用户菜单样式 */
+        .user-menu {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+    </style>
+    <script>
+        // JavaScript代码来显示和隐藏用户菜单
+        $(document).ready(function() {
+            $(".user-dropdown").click(function() {
+                $(".user-menu").toggle();
+            });
+        });
+    </script>
+</head>
+<body class="container">
+<div class="jumbotron text-center" style="margin-bottom:0px">
+    <h1 class="text-left">FriedChickenSystem--炸鸡系</h1>
+    <p class="text-left text-muted">Python Web Django Coursework</p>
+</div>
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+
+              <div style="display: flex; align-items: center;">
+                <form method="post" action="#">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-link" style="font-size: 18px; margin: 6px 10px;">Home</button>
+                </form>
+
+              <form method="post" action="/jsj/">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-link" style="font-size: 18px; margin: 6px 10px;">calculator</button>
+              </form>
+
+                <form method="post" action="/sc/secondary_page/">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-link" style="font-size: 18px; margin: 6px 10px;">Snakes Game</button>
+              </form>
+
+                  <form method="post" action="/sc/guessnumber/">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-link" style="font-size: 18px; margin: 6px 10px;">Guess Number Game</button>
+              </form>
+
+                <a href="https://friedcs.top" class="btn btn-link" style="font-size: 18px; margin: 6px 10px;">Personal Page</a>
+            </div>
+
+
+
+            </ul>
+            <!-- 添加用户菜单 -->
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown user-dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+
+                      User: {{ user.username }}
+                      <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu user-menu">
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                        <li><a href="#">Null</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="jumbotron text-left" style="margin-bottom:0">
+    <p>
+    <a href="https://gitee.com/kht12138">My Gitee</a>
+    </p>
+
+    <p>
+      <a href="https://github.com/RodisSevenW">My GitHub</a>
+    </p>
+
+</div>
+
+</body>
+</html>

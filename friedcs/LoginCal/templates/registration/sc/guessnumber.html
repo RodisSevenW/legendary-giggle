@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>猜数字游戏</title>
+    <!-- 引入Bootstrap样式文件 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container text-center">
+        <h1>猜数字游戏</h1>
+        <p class="lead">我已经选了一个1到100之间的随机数字。你能猜到是多少吗？</p>
+
+        <div class="input-group mb-3">
+            <input type="number" id="guess" class="form-control" placeholder="输入你的猜测">
+            <div class="input-group-append">
+                <button class="btn btn-primary" onclick="checkGuess()">提交猜测</button>
+            </div>
+        </div>
+
+        <p id="message"></p>
+    </div>
+
+    <!-- 引入Bootstrap的JavaScript文件 -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        const randomNumber = Math.floor(Math.random() * 100) + 1;
+        let attempts = 0;
+        
+        function checkGuess() {
+            const guess = document.getElementById("guess").value;
+            attempts++;
+            
+            if (guess < randomNumber) {
+                setMessage("太小了，请继续猜。");
+            } else if (guess > randomNumber) {
+                setMessage("太大了，请继续猜。");
+            } else {
+                setMessage(`恭喜你，猜对了！答案是 ${randomNumber}，你用了 ${attempts} 次尝试。`);
+                disableInput();
+            }
+        }
+        
+        function setMessage(message) {
+            document.getElementById("message").textContent = message;
+        }
+        
+        function disableInput() {
+            document.getElementById("guess").disabled = true;
+            document.querySelector("button").disabled = true;
+        }
+    </script>
+</body>
+</html>

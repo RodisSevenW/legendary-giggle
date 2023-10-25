@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小院子官网</title>
+    <link  href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        *{
+            font-family: "微软雅黑 Light";
+        }
+        .fakeimg {
+            height: 200px;
+        }
+        /*jumbotron是超大屏幕，作为组件，增加标题大小，为页面内容增添更多的页边距*/
+        .jumbotron{
+            background-color: #c1e2b3 ;
+        }
+        /*container容器用来固定宽度，配合响应式布局*/
+        .container{
+            width: 97%;
+        }
+    </style>
+</head>
+<body class="container">
+<div class="jumbotron text-center" style="margin-bottom:0px">
+<!--    margin-bottom设置下边距，允许为负-->
+    <h1 class="text-left">小院子--您身边的植物小管家</h1>
+    <p class="text-left text-muted">本店长期出售除甲醛类植物、家居植物和小多肉摆件，更多详情请到店铺咨询！</p>
+<!--    text-muted效果是使文字减弱-->
+</div>
+
+<!--这个是导航栏-->
+<nav class="navbar navbar-inverse">
+<!--    设置导航栏的主题是黑色主题-->
+    <div class="container-fluid">
+<!--      设置导航栏100%的宽度-->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">小院子</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">主页</a></li>
+                <li><a href="menu2.html">除甲醛植物</a></li>
+                <li><a href="menu3.html">家居摆件</a></li>
+                <li><a href="menu4.html">多肉小摆件</a></li>
+                <li><a href="menu5.html">更多</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div >
+    <div class="row">
+<!--        栅格系统将页面左边三份分为自信导航栏-->
+        <div class="col-sm-3" >
+            <h2>植物相关咨询</h2>
+            <ur >
+            <li >满天星<small>原名:圆锥石头花,属于...</small></li>
+            <li>栀子花<small>又名栀子、黄栀子，龙...</small></li>
+            <li>鹤望兰<small>多年生草本植物，无茎...</small></li>
+            <li>仙人掌<small>别名仙巴掌、观音掌、...</small></li>
+            <li>...</li>
+            </ur>
+            <h3>小院子活动公告</h3>
+            <p>双十一活动来袭</p>
+            <ul class="nav nav-pills nav-stacked">
+                <li ><a href="#">小院子六大售后服务...</a></li>
+                <li ><a href="#">双十一活动重磅来袭...</a></li>
+                <li ><a href="#">专业团队保证植物按...</a></li>
+            </ul>
+            <hr class="hidden-sm hidden-md hidden-lg">
+        </div>
+
+<!--        栅格系统右边9格分为图片展示栏-->
+        <div class="col-sm-9">
+            <h2>植物限时优惠</h2>
+            <h5>总有你想不到的低价</h5>
+            <div class="fakeimg">
+                <img src="../img2/1.jpg" width="24%" height="200px">
+                <img src="../img2/2.jpg" width="24%" height="200px">
+                <img src="../img2/5.jpg" width="24%" height="200px">
+                <img src="../img2/4.jpg" width="24%" height="200px">
+            </div>
+            <p>一些文本..</p>
+            <p>这合理吗？这合理吗？这合理吗？这合理吗？这合理吗？这合理吗？这合理吗？这合理吗？这合理吗？这合理吗？这合理吗？这合理吗？</p>
+            <br>
+
+            <h2>新品到店</h2>
+            <h5>本店新到了栀子花、满天星等花材，快来订购吧！</h5>
+            <div class="fakeimg">
+                <img src="../img2/6.jpg" width="24%" height="200px">
+                <img src="../img2/7.jpg" width="24%" height="200px">
+                <img src="../img2/8.jpg" width="24%" height="200px">
+                <img src="../img2/9.jpg" width="24%" height="200px">
+            </div>
+            <p>一些文本..</p>
+            <p>这合理吗？这合理吗？这合理吗？这合理吗？这合理吗？这合理吗？这合理吗？这合理吗？这合理吗？这合理吗？这合理吗？这合理吗？</p>
+
+            <h2>萌萌多肉</h2>
+            <h5>本店新到了小多肉，品种齐全，快来订购吧！</h5>
+            <div class="fakeimg">
+                <img src="../img2/23.jpg" width="24%" height="200px">
+                <img src="../img2/24.jpg" width="24%" height="200px">
+                <img src="../img2/25.jpg" width="24%" height="200px">
+                <img src="../img2/26.jpg" width="24%" height="200px">
+            </div>
+            <p>一些文本..</p>
+            <p>这合理吗？这合理吗？这合理吗？这合理吗？这合理吗？这合理吗？这合理吗？这合理吗？这合理吗？这合理吗？这合理吗？这合理吗？</p>
+        </div>
+    </div>
+</div>
+
+<div class="jumbotron text-left" style="margin-bottom:0">
+
+    <p>店铺位置：****************   订购电话：1**********   </p>
+</div>
+
+
+
+</body>
+</html>
